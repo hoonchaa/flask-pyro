@@ -51,3 +51,10 @@ class Upload(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', backref=db.backref('upload_set'))
     modify_date = db.Column(db.DateTime(), nullable=True)
+    filename = db.Column(db.String(150), nullable=True, server_default="temp")
+    file_path = db.Column(db.String(500), nullable=True, server_default="temp")
+    process = db.Column(db.String(50), nullable=True, server_default="temp")
+    device = db.Column(db.String(50), nullable=True, server_default="temp")
+
+
+
