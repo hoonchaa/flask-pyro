@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">파일 업로드</h5>
+    <form method="post" class="my-3" enctype = "multipart/form-data">
+        {{ form.csrf_token }}
+        {% include "form_errors.html" %}
+        <div class="mb-3">
+            <label for="subject">제목</label>
+            <input type="text" class="form-control" name="subject" id="subject"
+                   value="{{ form.subject.data or '' }}">
+        </div>
+        <div>
+            <label for="process">PROCESS 선택:</label>
+            <select name="process" id="process">
+                <option value="D140">D140</option>
+                <option value="D128M">D128M</option>
+                <option value="D112">D112</option>
+            </select><br><br>
+        </div>
+        <div>
+            <label for="device">제품명 선택:</label>
+            <select name="device" id="device">
+                <option value="VRB">VRB</option>
+                <option value="VHB">VHB</option>
+                <option value="VMG">VMG</option>
+            </select><br><br>
+        </div>
+        <div class="mb-3">
+            <label for="file-upload">파일 선택:</label>
+            <input type="file" id="file-upload" name="file">
+        </div>
+        <div class="mb-3">
+            <label for="content">내용</label>
+            <textarea class="form-control" name="content"
+                      id="content" rows="10">{{ form.content.data or '' }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">업로드하기</button>
+    </form>
+</div>
+{% endblock %}
